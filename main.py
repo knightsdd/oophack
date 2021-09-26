@@ -51,8 +51,7 @@ if __name__ == '__main__':
 
     def main():
         prepare_to_battle()
-        start = True
-        while start:
+        while True:
             print('Подробнее о бойце (1, 2.. 10) или ')
             print('Начать сражение? (y)')
             key = str(input())
