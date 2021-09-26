@@ -1,7 +1,7 @@
 import random
 from typing import List
 
-from classes import Paladin, Person, Thing, Warrior
+from classes import Paladin, Thing, Warrior
 
 
 def generate_persons(names: List[str]) -> List:

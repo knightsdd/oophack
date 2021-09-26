@@ -70,10 +70,12 @@ class Person:
         self.hp += additional_health
 
     def get_hp(self):
-        return self.hp
+        return round(self.hp, 2)
 
     def get_damage(self, damage: int):
-        self.hp = self.get_hp() - (damage - (damage * self.finalProtection()))
+        real_damage = round(damage - damage * self.finalProtection(), 2)
+        self.hp = self.get_hp() - real_damage
+        return real_damage
 
     def isAlive(self) -> bool:
         if self.get_hp() > 0:
