@@ -1,7 +1,7 @@
 import random
 from typing import List
 
-from classes import Paladin, Thing, Warrior
+from classes import Paladin, Person, Thing, Warrior
 
 
 def generate_persons(names: List[str]) -> List:
@@ -29,9 +29,16 @@ def generate_persons(names: List[str]) -> List:
     return persons
 
 
-def print_persons(persons: List):
+def print_persons_full(persons: List):
     for person in persons:
         print(person)
+
+
+def print_persons_light(persons: List):
+    count = 1
+    for person in persons:
+        print(f'{count}. {person.name}')
+        count += 1
 
 
 def sort_key(thing: Thing) -> float:

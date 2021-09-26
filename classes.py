@@ -40,9 +40,9 @@ class Person:
                f'Класс: {self.__class__.__name__}, \n'
                f'единиц здоровья: {self.hp},\n'
                f'базовая атака: {self.base_attack},\n'
-               f'реальная атака: {self.get_real_damage()},\n'
+               f'реальная атака: {self.attack_damage()},\n'
                f'базовая защита: {self.base_defence},\n'
-               f'реальная защита: {self.get_real_defence()}.\n'
+               f'реальная защита: {self.finalProtection()}.\n'
                'Экипировка: \n'
                f'{thing_info}'
                '----------------------------------\n')
@@ -51,17 +51,17 @@ class Person:
         self.bag = things
         self.update_health()
 
-    def get_real_damage(self):
+    def attack_damage(self):
         additional_damage = 0
         for thing in self.bag:
             additional_damage += thing.damage
         return (self.base_attack + additional_damage)
 
-    def get_real_defence(self):
-        additional_defence = 0
+    def finalProtection(self) -> float:
+        additional_defence: float = 0
         for thing in self.bag:
             additional_defence += thing.defence
-        return (self.base_defence + (self.base_defence * additional_defence))
+        return round(self.base_defence + additional_defence, 2)
 
     def update_health(self):
         additional_health = 0
@@ -69,8 +69,17 @@ class Person:
             additional_health += thing.health
         self.hp += additional_health
 
-    def attack_damage(attacker):
-        pass
+    def get_hp(self):
+        return self.hp
+
+    def get_damage(self, damage: int):
+        self.hp = self.get_hp() - (damage - (damage * self.finalProtection()))
+
+    def isAlive(self) -> bool:
+        if self.get_hp() > 0:
+            return True
+        else:
+            return False
 
 
 class Paladin(Person):
